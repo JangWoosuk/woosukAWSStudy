@@ -2,6 +2,7 @@ package com.example.woosukawsstudy.web;
 
 import com.example.woosukawsstudy.ExcelPoi.ExcelPoi;
 import com.example.woosukawsstudy.Vo.TestVo;
+import com.example.woosukawsstudy.csv.MakeCSV;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,9 +20,12 @@ public class HelloController {
     @GetMapping("/student")
     public String student(){
         TestVo test = new TestVo();
-        test.setAge("10 years old");
+        test.setAge("31");
         test.setName("WooSuk");
+        test.setId("920517");
+        MakeCSV csv = new MakeCSV(test.getId(),test.getName(),test.getAge());
 
+        csv.makeCSV(csv);
         return test.toString();
     }
 
