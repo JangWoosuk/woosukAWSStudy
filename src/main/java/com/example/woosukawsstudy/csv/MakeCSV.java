@@ -1,6 +1,7 @@
 package com.example.woosukawsstudy.csv;
 
 import lombok.Data;
+import org.apache.logging.log4j.util.Strings;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,7 +9,6 @@ import java.io.PrintWriter;
 
 @Data
 public class MakeCSV {
-
     String id ;
     String name;
     String age;
@@ -17,12 +17,16 @@ public class MakeCSV {
         this.id = id;
         this.name = name;
         this.age = age;
-
     }
 
     public void makeCSV(MakeCSV csv){
         try{
-            PrintWriter write = new PrintWriter(new File("test.csv"));
+            String path = "src/main/resources/makeCsv";
+            File downFolder = new File(path);
+            if(!downFolder.exists()){
+                downFolder.mkdir();
+            }
+            PrintWriter write = new PrintWriter(new File(path+"/test.csv"));
             StringBuilder sb = new StringBuilder();
             sb.append("id ");
             sb.append(",");
@@ -44,4 +48,6 @@ public class MakeCSV {
         }
 
     }
+
+
 }

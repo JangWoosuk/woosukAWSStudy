@@ -3,7 +3,9 @@ package com.example.woosukawsstudy.web;
 import com.example.woosukawsstudy.ExcelPoi.ExcelPoi;
 import com.example.woosukawsstudy.Vo.TestVo;
 import com.example.woosukawsstudy.csv.MakeCSV;
+import com.example.woosukawsstudy.web.dto.HelloResponseDto;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
@@ -17,15 +19,21 @@ public class HelloController {
         return "hello";
     }
 
+    @GetMapping("/hello/dto")
+    public HelloResponseDto helloDto(@RequestParam("name") String name, @RequestParam("amount") int amount){
+
+        return new HelloResponseDto(name,amount);
+    }
+
     @GetMapping("/student")
-    public String student(){
+    public String student()  {
         TestVo test = new TestVo();
         test.setAge("31");
         test.setName("WooSuk");
         test.setId("920517");
         MakeCSV csv = new MakeCSV(test.getId(),test.getName(),test.getAge());
-
         csv.makeCSV(csv);
+
         return test.toString();
     }
 

@@ -12,6 +12,7 @@ class WoosukAwsStudyApplicationTests {
 
 
     /**
+     * TDD
      *레드 그린 사이클
      *
      * 항살 실패하는 테스트를 먼저 작성한다 (레드)
